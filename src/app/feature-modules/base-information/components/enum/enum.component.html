@@ -1,0 +1,44 @@
+ 
+<!-- <mn-combo-box required [multiple]="false"    [isRequired]="true" name="enumTypeId" [placeholder]="'Base Information Group'" [(ngModel)]="enumTypeId" [apiUrl]="'EnumTypePanel/EnumTypeItem'" [valueField]="'EnumTypeId'" (ngModelChange)="OnRefreshGrid($event)" [labelField]="'EnumTypeName'"></mn-combo-box>
+ -->
+ <div class="grid-content"> 
+<table id="grid" class="fl-table">
+    <thead>
+        <tr>
+            <th>
+                <button mat-mini-fab color="accent" *ngxPermissionsOnly="[Insertpermision]" focusable="false" (click)="onNew()">
+              <mat-icon matSuffix>add</mat-icon>
+           </button>
+            </th>
+            <th *ngFor="let columnItem of columns">
+                <grid-filter [column]="columnItem" (onFilter)="onGridFilter($event)"
+                    (onSort)="onGridSort($event)"></grid-filter>
+            </th>
+            <th> عملیات </th>
+        </tr>
+
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of queryResult.Data; let i = index">
+            <td  >{{ itemsPerPage * (currentPage) + i + 1 }}</td>
+            <td  >{{ item.EnumName }}</td>
+            <td  >{{ item.EnumCode }}</td>
+            <td  >{{ item.EnumTypeTitel }}</td>
+            <td  >{{ item.ParentName }}</td>
+            
+            <td class="opration">
+                <button mat-raised-button color="primary" *ngxPermissionsOnly="[Updatepermision]" (click)="onEdit(item.EnumId)">
+                    <mat-icon matSuffix> edit</mat-icon>
+                </button>
+                <button mat-raised-button color="warn" *ngxPermissionsOnly="[Deletepermision]" (click)="onRemove(item.EnumId)">
+                    <mat-icon matSuffix>delete_forever</mat-icon>
+                </button>
+            </td>
+        </tr>
+        <tbody>
+</table>
+<div *ngIf="queryResult.Data.length==0"  > {{"No data to display" | translate }} </div>
+ </div>
+<mat-paginator  #paginator  [pageSize]="itemsPerPage" showFirstLastButtons
+(page)="onPageChange($event)"  [length]="queryResult.Total" [pageSizeOptions]="[5, 10, 25, 100]" >
+</mat-paginator>

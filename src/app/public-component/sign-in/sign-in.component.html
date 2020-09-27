@@ -1,0 +1,31 @@
+<mat-card style="width: 30em;  margin :0px auto"  >
+ 
+    <mat-card-title style="padding: 2%; font-size:1.5em">
+        <mat-icon matSuffix>lock</mat-icon>   سامانه همیار </mat-card-title>
+  
+
+    <mat-card-content>
+    <div fxLayoutAlign="center center">  برای ورود یا ثبت نام شماره خود را وارد کنید</div>   
+        <form #form="ngForm" (submit)="submitForm(form)" novalidate>
+                <app-error [errorList]="errors"></app-error>
+                
+            <div class="example-container" >
+                <mat-form-field  appearance="outline"> 
+                        <mat-label>شماره موبایل</mat-label>
+                    <input matInput placeholder="شماره موبایل" autocomplete="off" #mobile="ngModel" class=""  minlength="11"  maxlength="11" phone  name="username" [(ngModel)]="entity.Mobile" required>
+                    <mat-icon matSuffix>settings_cell</mat-icon>
+                    <mat-hint>09120000000</mat-hint>
+                    <mat-error *ngIf="mobile.errors?.required">  ورود شماره موبایل اجباری می باشد  </mat-error>
+                    <mat-error *ngIf="mobile.errors?.maxlength">  حداقل تعداد کاراکتر 11  </mat-error>
+                    <mat-error *ngIf="mobile.errors?.minlength"> حداکثر  تعداد کاراکتر 11  </mat-error>
+
+                </mat-form-field>
+ 
+            </div>
+ 
+        </form>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="submitForm(form)" class="btn-block" [disabled]="form.invalid ">ارسال کد</button>
+    </mat-card-actions>
+</mat-card>

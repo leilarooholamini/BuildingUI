@@ -1,0 +1,80 @@
+.example-icon {
+    padding: 0 14px;
+    cursor: pointer;
+    
+  }
+  
+  .example-spacer {
+   flex: 1 1 auto;
+
+  
+  }
+  .spacer{
+     margin-left: 50px;
+
+ 
+
+}
+
+.headerColor{
+ //position: fixed;
+//top: 0;
+  background-color: #00695c;
+}
+.userAvatar{
+  padding-bottom: -15px;
+  border-radius: 50%;
+  width:30px ;
+  height:30px;
+
+}
+.userNameAvatar{
+  margin-right: 10px;
+  
+}
+
+ 
+  .example-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  
+  .example-radio-group {
+    display: block;
+    border: 1px solid #555;
+    margin: 20px;
+    padding: 10px;
+  }
+  
+.headername{
+    width: 269px;
+    height: 34px;
+    color: white;
+     background-color: #00695c;
+  padding: 15px;
+   span{
+     font-size: 16px;
+     text-align: center; 
+     font-weight: 800;
+    padding: 15px;
+     button{
+     float: left;
+      margin-left: -10px;
+    };
+   }
+  
+
+}
+.container{
+  margin-left: 5px;
+  margin-right: 5px;
+  //margin-top: 50px;
+  padding: 6px;
+  .contentCard{
+    min-height: 500px;
+  }
+}
+ 

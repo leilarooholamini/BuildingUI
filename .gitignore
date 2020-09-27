@@ -1,0 +1,17 @@
+/.vscode
+/node-modules
+package-lock.json
+/public/hot
+/public/storage
+/public/mix-manifest.json
+/storage/*.key
+/vendor
+/.idea
+/.vagrant
+homestead.json
+homestead.yaml
+npm-debug.log
+yarn-error.log
+.evn
+composer.lock
+package-lock.json

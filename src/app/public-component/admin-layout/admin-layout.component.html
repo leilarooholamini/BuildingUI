@@ -1,0 +1,55 @@
+<mat-sidenav-container class="example-container">
+
+  <mat-sidenav opened="true" #sidenav [mode]="'side'" style="width: 300px">
+
+    <div class="headername">
+      <span>سامانه
+        
+      </span>
+       
+
+    </div>
+    <app-menu-list-item *ngFor="let item of navItems" [item]="item"></app-menu-list-item>
+
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" class="headerColor" >
+      <mat-toolbar-row>
+
+        <button mat-icon-button color="primary" style="color: white;" (click)="sidenav.toggle()" aria-label="نمایش منو">
+          <mat-icon>menu</mat-icon>
+        </button>
+
+        <span class="example-spacer"> </span>
+
+        <button mat-button [matMenuTriggerFor]="menu"><img class="userAvatar" *ngIf="entity.ImagePath" [src]="serverUrl+entity.ImagePath" />
+          <span class="userNameAvatar">{{entity.FullName }} - {{entity.UnitName}}</span> </button>
+        <mat-menu #menu="matMenu" yPosition="below">
+          <button mat-menu-item (click)="onShowProfile()">
+            <mat-icon>storage</mat-icon> {{ "ChangeUserProfile" | translate }}
+          </button>
+          <button mat-menu-item routerLink="/selectrole">
+            <mat-icon>perm_identity</mat-icon> {{ "ChangeUnitRole" | translate }}
+          </button>
+          <button mat-menu-item (click)="onlogOut()">
+            <mat-icon style=" transform: rotate(180deg);" aria-hidden="false" aria-label="Log Out">exit_to_app
+            </mat-icon> خروج
+          </button>
+
+        </mat-menu>
+
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <br />
+
+    <mat-card class="container"> 
+      <mat-card-content  class="contentCard">
+        <router-outlet></router-outlet>
+
+      </mat-card-content>
+    </mat-card>
+  </mat-sidenav-content>
+
+
+</mat-sidenav-container>

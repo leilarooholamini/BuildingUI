@@ -1,0 +1,36 @@
+
+<header-dialog (close)="onCancel()" [title]="'Assign User unit Role'"></header-dialog>
+
+
+<table class="fl-table">
+    <thead>
+        <tr>
+            <th>
+                <button mat-mini-fab color="accent" *ngxPermissionsOnly="['UserInsert']" focusable="false" (click)="onNew()">
+           <mat-icon matSuffix>add</mat-icon>
+           </button>
+            </th>
+            <th *ngFor="let columnItem of columns">
+                <grid-filter [column]="columnItem" (onFilter)="onGridFilter($event)" (onSort)="onGridSort($event)"></grid-filter>      </th>
+            <th> عملیات </th>
+        </tr>
+
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of queryResult.Data; let i = index">
+            <td  >{{ itemsPerPage * (currentPage) + i + 1 }}</td> 
+            <td  >{{ item.RoleTitle }}</td> 
+            <td  >{{ item.UnitName }}</td> 
+           
+            <td  >
+             
+                <button mat-raised-button color="warn" *ngxPermissionsOnly="['UserDelete']" (click)="onRemove(item.UserRoleId)">
+                <mat-icon matSuffix>delete_forever</mat-icon>
+            </button>
+            </td>
+        </tr>
+        <tbody>
+</table>
+<mat-paginator #paginator [pageSize]="itemsPerPage" showFirstLastButtons
+  (page)="onPageChange($event)" [length]="queryResult.Total" [pageSizeOptions]="[5, 10, 25, 100]">
+</mat-paginator>

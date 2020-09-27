@@ -1,0 +1,12 @@
+<div class="formField">
+    <div class="placeholder"> {{headerName}} : </div>
+    <div class="title"> {{Titel}} </div>
+    <div>
+        <a [disabled]="disabled" mat-button color="primary" (click)="OnClick()">
+            <mat-icon>search</mat-icon>
+        </a>
+        <a [disabled]="disabled" mat-button color="warn" (click)="OnRemove()">
+            <mat-icon>delete</mat-icon>
+        </a>
+    </div>
+</div>

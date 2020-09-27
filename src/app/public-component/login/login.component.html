@@ -1,0 +1,31 @@
+<mat-card style="width: 30em;  margin :0px auto">
+    <mat-card-title style="padding: 2%; font-size:1.5em">
+        <mat-icon matSuffix>lock</mat-icon>   سامانه طب سلامت </mat-card-title>
+    <mat-card-content>
+        <form #form="ngForm" (submit)="submitForm(form)" novalidate>
+            <div class="example-container">
+                <mat-form-field>
+                    <input matInput placeholder="نام کاربری" autocomplete="off" #username="ngModel" class="" name="username" [(ngModel)]="model.username" required>
+                    <mat-icon matSuffix>face</mat-icon>
+                    <mat-error *ngIf="username.invalid">  ورود نام کاربری اجباری می باشد  </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="example-container">
+                <mat-form-field>
+                    <input matInput  placeholder="گذرواژه" autocomplete="off" type="password" #password="ngModel" class="" name="password" [(ngModel)]="model.password" required>
+                    <mat-icon matSuffix>vpn_key</mat-icon>
+                    <mat-error *ngIf="password.invalid">  ورود گذرواژه اجباری می باشد</mat-error>
+                </mat-form-field>
+            </div>
+
+
+            <mat-error *ngIf="error">
+                {{error}}
+            </mat-error>
+        </form>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="submitForm(form)" class="btn-block" [disabled]="form.invalid ">ورود به سامانه</button>
+    </mat-card-actions>
+</mat-card>

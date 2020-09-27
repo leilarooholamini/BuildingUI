@@ -1,0 +1,14 @@
+.content {
+    padding: 16px;
+    margin-left:16px !important;
+}
+
+.content > mat-card {
+    margin-bottom: 16px;
+ 
+    mat-card-image{
+        width: 100px;
+        height: 120px;
+    }
+}
+

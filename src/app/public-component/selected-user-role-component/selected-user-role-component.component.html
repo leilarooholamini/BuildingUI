@@ -1,0 +1,38 @@
+<div style="width: 600px;  margin: 0px auto;">
+  <div  class="txtform">انتخاب نقش</div>
+
+   <table class="fl-table">
+     <thead>
+       <tr>
+         <th> # </th>
+      
+          <th *ngFor="let columnItem of columns">
+            <grid-filter [column]="columnItem" (onFilter)="onGridFilter($event)" (onSort)="onGridSort($event)"></grid-filter>
+    
+         </th>
+         <th> انتخاب نقش</th>
+       </tr>
+
+     </thead>
+     <tbody>
+       <tr *ngFor="let item of queryResult.Data; let i = index">
+         <td  >{{ itemsPerPage * (currentPage) + i + 1 }}</td>
+         <td  >{{ item.UnitName }}</td>
+         <td  >{{ item.RoleTitle }}</td>
+         
+         <td  >
+           <button mat-raised-button color="primary" (click)="onSelectUserRole(item.UserRoleId)">   انتخاب و ورود به سامانه  </button>
+         </td>
+       </tr>
+     <tbody>
+   </table>
+   <!-- <pagination [maxSize]="10" [boundaryLinks]="true" [totalItems]="queryResult.Total" [rotate]="false"
+     previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"
+     (numPages)="numberOfPages = $event" [(ngModel)]="currentPage" (pageChanged)="onPageChange($event)"></pagination> -->
+
+     <mat-paginator  #paginator  [pageSize]="itemsPerPage" showFirstLastButtons
+(page)="onPageChange($event)"  [length]="queryResult.Total" [pageSizeOptions]="[5, 10, 25, 100]" >
+</mat-paginator>
+
+    </div>
+    

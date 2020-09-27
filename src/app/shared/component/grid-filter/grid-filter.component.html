@@ -1,0 +1,73 @@
+<span *ngIf="column.isSortable else noIsSorted" (click)="onGridSort(column.propertyName)"> {{ column.title | translate}}
+</span>
+<ng-template #noIsSorted> {{column.title  | translate }} </ng-template>
+
+<mat-form-field *ngIf="column.isFilterd && column.type =='string'" appearance="standard">
+    <mat-label style="color: white;"> {{"SearchText"  | translate }}  </mat-label>
+    <input matInput style="width: 70%;" [(ngModel)]="filtertext" name="filetr">
+    <button mat-mini-fab [matMenuTriggerFor]="searchText" color="primary" aria-label="Filter">
+        <mat-icon>filter_alt</mat-icon>
+    </button>
+</mat-form-field>
+
+<mat-form-field  *ngIf="column.isFilterd && column.type =='number'" appearance="standard">
+    <mat-label > {{"SearchText"  | translate }} </mat-label>
+    <input matInput digitOnly style="width: 70%;" [(ngModel)]="filtertext" name="digitfiletr">
+    <button mat-mini-fab [matMenuTriggerFor]="numberMenu" color="primary" aria-label="Filter">
+        <mat-icon>filter_alt</mat-icon>
+    </button>
+</mat-form-field>
+
+
+<mat-form-field style="width: 70%;color: white;" *ngIf="column.isFilterd && column.type =='date'">
+    <mat-label style="color: white;">{{"SearchText"  | translate }}   </mat-label>
+    <input matInput style="width: 70%;color: white;"  [(ngModel)]="filtertext" name="filterDate" [matDatepicker]="picker">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker   ></mat-datepicker>  
+</mat-form-field>
+<button mat-mini-fab  *ngIf="column.isFilterd && column.type =='date'" [matMenuTriggerFor]="numberMenu" color="primary" aria-label="Filter">
+    <mat-icon>filter_alt</mat-icon>
+</button>
+
+<mat-menu #numberMenu="matMenu" xPosition="after">
+
+    <button mat-menu-item (click)="onGridFilter(column.propertyName,'eq')"><mat-icon>search</mat-icon> {{"equal" | translate}}</button>
+    <button mat-menu-item (click)="onGridFilter(column.propertyName ,'neq')"><mat-icon>search</mat-icon>{{"Is not equal to" | translate}}</button>
+    <button mat-menu-item (click)="onGridFilter(column.propertyName ,'gte')"><mat-icon>search</mat-icon>{{"greater than or equal" | translate}}
+    </button>
+    <button mat-menu-item (click)="onGridFilter(column.propertyName ,'gt')"> <mat-icon>search</mat-icon>{{"greater than" | translate}} </button>
+    <button mat-menu-item (click)="onGridFilter(column.propertyName ,'lte')"><mat-icon>search</mat-icon>{{"less than or equal" | translate}}
+    </button>
+    <button mat-menu-item (click)="onGridFilter(column.propertyName ,'lt')"> <mat-icon>search</mat-icon>{{"less than" | translate}} </button>
+
+    <button mat-menu-item (click)="onGridFilterClear(column.propertyName )">    <mat-icon>search_off</mat-icon>   {{"ClearFilter" | translate}} </button>
+</mat-menu>
+
+
+<mat-menu #searchText="matMenu" xPosition="after">
+
+    <button mat-menu-item (click)="onGridFilter(column.propertyName,'contains')"><mat-icon>search</mat-icon>{{"contains" | translate}}</button>
+    <button mat-menu-item (click)="onGridFilter(column.propertyName ,'startswith')"><mat-icon>search</mat-icon>{{"startswith" | translate}}
+    </button>
+    <button mat-menu-item (click)="onGridFilter(column.propertyName ,'endswith')"><mat-icon>search</mat-icon>{{"endswith" | translate}} </button>
+    <button mat-menu-item (click)="onGridFilter(column.propertyName ,'doesnotcontain')"><mat-icon>search</mat-icon>{{"doesnotcontain" | translate}}
+    </button>
+    <button mat-menu-item (click)="onGridFilterClear(column.propertyName )"> <mat-icon>search_off</mat-icon> {{"ClearFilter" | translate}} </button>
+</mat-menu>
+
+<button mat-mini-fab  *ngIf="column.isFilterd && column.type =='bool'" [matMenuTriggerFor]="searchBool" color="primary" aria-label="Filter">
+    <mat-icon>filter_alt</mat-icon>
+</button>
+
+<mat-menu #searchBool="matMenu"  xPosition="after">
+
+    
+    <button mat-menu-item  (click)="filtertext='true';onGridFilter(column.propertyName ,'eq');"><mat-icon>search</mat-icon>{{"active" | translate}} </button>
+    <button mat-menu-item (click)="filtertext='false';onGridFilter(column.propertyName ,'eq');"> <mat-icon>search</mat-icon> {{"Inactive" | translate}}
+    </button>
+    <button mat-menu-item (click)="filtertext='';onGridFilterClear(column.propertyName );"><mat-icon>search_off</mat-icon> {{"ClearFilter" | translate}} </button>
+</mat-menu>
+
+<!-- 
+<mat-checkbox *ngIf="column.isFilterd && column.type =='bool'" (change)="onGridFilter(column.propertyName,$event)">
+</mat-checkbox> -->

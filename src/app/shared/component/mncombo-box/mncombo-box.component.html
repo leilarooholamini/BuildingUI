@@ -1,0 +1,36 @@
+<mat-form-field *ngIf="multiple" style="width: 300px;">
+    <mat-label>{{ placeholder | translate }}</mat-label>
+    <mat-select multiple [required]="isRequired" name="ddddd" [id]="id" [(ngModel)]="value" #inputModel1="ngModel" (ngModelChange)="change($event)">
+        <mat-option *ngFor="let item of enums | async" [value]="getValue(item)">
+            {{getLabel(item)}}
+        </mat-option>
+    </mat-select>
+    <mat-error>
+        <ng-container *ngTemplateOutlet="validationErrorsTemplate1; context:{ control: inputModel1 }"></ng-container>
+    </mat-error>
+</mat-form-field>
+
+<!-- [placeholder]="placeholder" -->
+
+<mat-form-field *ngIf="!multiple" style="width: 300px">
+    <mat-label>{{ placeholder | translate }}</mat-label>
+    <mat-select [required]="isRequired" name="ddddd" [id]="id" [(ngModel)]="value" #inputModel1="ngModel" (ngModelChange)="change($event)">
+        <mat-option [disabled]="true">گزینه مورد نظر را انتخاب نمایید</mat-option>
+        <mat-option *ngFor="let item of enums | async" [value]="getValue(item)">
+            {{getLabel(item)}}
+        </mat-option>
+    </mat-select>
+    <mat-error>
+        <ng-container *ngTemplateOutlet="validationErrorsTemplate1; context:{ control: inputModel1 }"></ng-container>
+    </mat-error>
+</mat-form-field>
+
+
+<ng-template #validationErrorsTemplate1 let-ctrl="control">
+    <div *ngIf="ctrl.invalid ">
+        <div *ngIf="ctrl.errors.required">
+            {{ "This is a required field" | translate }}
+        </div>
+
+    </div>
+</ng-template>

@@ -1,0 +1,56 @@
+<header-dialog (close)="onCancel()" [title]="'Edit Profile'"></header-dialog>
+
+<form #form="ngForm" (submit)="submitForm(form)" novalidate>
+    <mat-dialog-content>
+        <app-error [errorList]="errors"></app-error>
+
+
+        <div>
+            <mninput requiredIf="true" [isRequired]="true" [widthControl]="300" name="PersonalName"
+                [id]="'PersonalName'" [placeholder]="'Enter Your Personal Name'" [max_Length]="50"
+                [(ngModel)]="entity.PersonalName"></mninput>
+
+            <mninput requiredIf="true" [isRequired]="true" [widthControl]="300" name="PersonalLastName"
+                [id]="'PersonalLastName'" [placeholder]="'Enter Your  LastName'" [max_Length]="50"
+                [(ngModel)]="entity.PersonalLastName"></mninput>
+        </div>
+        <div>
+            <mninput [widthControl]="300" name="Father" [id]="'Father'" [placeholder]="'Enter Your Father'"
+                [max_Length]="50" [(ngModel)]="entity.Father"></mninput>
+        </div>
+
+
+
+        <div>
+            <mninput   [type]="'password'"  [widthControl]="300" name="'password'"
+                [id]="'Password'" [placeholder]="'Enter Your Password'" [max_Length]="300"
+                [(ngModel)]="entity.Password"></mninput>
+        </div>
+        <div>
+            <mninput  [type]="'password'"  [type]="'password'" [widthControl]="300"
+                name="repassword" [id]="'RePassword'" [placeholder]="'Enter Your RePassword'" [max_Length]="300"
+                [(ngModel)]="entity.RePassword"></mninput>
+        </div>
+
+
+        <mn-datepicker name="BirthDate" [id]="'BirthDate'" [placeholder]="'Enter Your BirthDate'"
+            [(ngModel)]="entity.BirthDate"> </mn-datepicker>
+
+        <mn-combo-box [id]="'eLanguageId'" [multiple]="false" name="eLanguageId" [placeholder]="'Select Your Language'"
+            [(ngModel)]="entity.E_LanguageId" [apiUrl]="'EnumPanel/getByEnumType?EnumType=Language'"
+            [valueField]="'EnumId'" [labelField]="'EnumName'" ></mn-combo-box>
+
+        <mn-combo-box [id]="'eThemId'" [multiple]="false" name="eThemId" [placeholder]="'Select Your Theme'"
+            [(ngModel)]="entity.E_ThemId" [apiUrl]="'EnumPanel/getByEnumType?EnumType=Theme'" [valueField]="'EnumId'"
+            [labelField]="'EnumName'"  ></mn-combo-box>
+
+        <mn-image-upload [(imageInput)]='entity.FileId'></mn-image-upload>
+
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-raised-button color="primary" *ngxPermissionsOnly="['UserUpdate','UserInsert']"
+            [disabled]="form.invalid" type="submit">Save</button>
+        <a mat-raised-button (click)="onCancel()">Cancel</a>
+    </mat-dialog-actions>
+
+</form>

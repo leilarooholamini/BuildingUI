@@ -1,0 +1,32 @@
+<header-dialog (close)="onCancel()" [title]="'انتخاب'">
+</header-dialog>
+<mat-dialog-content>
+    <div style="width: 450px;width: 100%;">
+        <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+            <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding>
+                <button mat-icon-button disabled></button>
+
+                <button mat-button [ngClass]="{'select-item':node.UnitId==SelectItem.UnitId}" (click)="onSelectItem(node)">
+            <mat-icon class="type-icon"> {{node.expanded ? 'folder' : 'folder_open'}} </mat-icon>
+            {{node.UnitName}}</button>
+            </mat-tree-node>
+
+            <mat-tree-node *matTreeNodeDef="let node;when hasChild" matTreeNodePadding>
+                <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'toggle ' + node.UnitName">
+        <mat-icon   class="mat-icon-rtl-mirror">
+            {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+        </mat-icon>
+      </button>
+                <button [ngClass]="{'select-item':node.UnitId==SelectItem.UnitId}" mat-button (click)="onSelectItem(node)">
+        <mat-icon class="type-icon">
+            {{node.expanded ? 'folder' : 'folder_open'}}
+        </mat-icon>
+        {{node.UnitName}}</button>
+            </mat-tree-node>
+        </mat-tree>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button color="primary" [disabled]="SelectItem.UnitId==undefined" (click)="onSelect()">انتخاب</button>
+
+</mat-dialog-actions>

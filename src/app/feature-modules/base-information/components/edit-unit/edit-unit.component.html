@@ -1,0 +1,32 @@
+<header-dialog (close)="onCancel()" [title]="'مدیریت سازمان'"></header-dialog>
+
+<form #form="ngForm" (submit)="submitForm(form)" novalidate>
+    <mat-dialog-content>
+        <app-error [errorList]="errors"></app-error>
+
+        <div>
+            <mninput requiredIf="true" [isRequired]="true" [widthControl]="500" name="UnitName" [id]="'UnitName'" [placeholder]="'عنوان سازمان  را وارد نمایید'" [max_Length]="30" [(ngModel)]="entity.UnitName"></mninput>
+        </div>
+        <select-item [feildTitle]="'سازمان مافوق  را انتخاب نمایید'" [apiUrl]="'TreePanel/UnitAll'" [title]="entity.ParentUnitName" (OnClick)="OnSelect($event)"> </select-item>
+
+
+        <div class="example-container">
+            <mat-checkbox name="IsActive" [(ngModel)]="entity.IsActive">فعال باشد</mat-checkbox>
+        </div>
+        <div>
+            <mn-number-input [minlength]="11" name="Phone" [id]="'Phone'" [placeholder]="'شماره تلفن  را وارد نمایید'" [max_Length]="11" [(ngModel)]="entity.Phone"></mn-number-input>
+            <mninput [widthControl]="400" name="Address" [id]="'Address'" [placeholder]="'آدرس  را وارد نمایید'" [max_Length]="300" [(ngModel)]="entity.Address"></mninput>
+        </div>
+
+        <mn-combo-box required [multiple]="false" [isRequired]="true" name="dddddd" [placeholder]="'نوع سازمان را انتخاب نمایید'" [(ngModel)]="entity.UnitTypeId" [apiUrl]="'EnumPanel/getByEnumType?EnumType=UnitType'" [valueField]="'EnumId'" [labelField]="'EnumName'"></mn-combo-box>
+        <br/>
+        <mn-image-upload [(imageInput)]='entity.Logo'></mn-image-upload>
+
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-raised-button color="primary" *ngxPermissionsOnly="['UnitUpdate','UnitInsert']" [disabled]="form.invalid" type="submit">ذخیره</button>
+        <a mat-raised-button (click)="onCancel()">انصراف</a>
+    </mat-dialog-actions>
+
+</form>
+<br/>

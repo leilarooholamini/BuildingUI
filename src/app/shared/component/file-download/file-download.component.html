@@ -1,0 +1,9 @@
+
+<a *ngIf="FileId else notfound" [href]="pathServerUrl+'&id='+FileId+'&formType='+formType">
+    <mat-icon> attach_file</mat-icon>
+    <br/>
+    {{lable}}
+</a>
+<ng-template #notfound>{{"file Is Empty" | translate }}</ng-template>
+
+

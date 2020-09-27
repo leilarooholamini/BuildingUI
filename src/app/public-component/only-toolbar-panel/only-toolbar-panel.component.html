@@ -1,0 +1,18 @@
+  <mat-toolbar   class="bkcolor fixed" >
+    <mat-toolbar-row fxLayoutAlign="end"> 
+   
+      <button mat-button [matMenuTriggerFor]="menu"><img class="userAvatar" *ngIf="entity.ImagePath" [src]="serverUrl+entity.ImagePath" />
+        <span class="userNameAvatar">{{entity.FullName }}</span> </button>
+      <mat-menu #menu="matMenu" yPosition="below"> 
+        <button mat-menu-item (click)="onlogOut()">
+          <mat-icon style=" transform: rotate(180deg);" aria-hidden="false" aria-label="Log Out">exit_to_app
+          </mat-icon> خروج
+        </button>
+
+      </mat-menu>
+     
+    </mat-toolbar-row>
+  </mat-toolbar>  
+  <div class="container">
+<router-outlet ></router-outlet>
+</div>

@@ -1,0 +1,25 @@
+<mat-form-field [style.width.%]="size" style="margin-top: 10px;">
+    <!-- [placeholder]="placeholder" -->
+    <mat-label>{{ placeholder | translate }}</mat-label>
+    <mat-select [id]="id" [required]="isRequired" [(ngModel)]="value" (ngModelChange)="onSelectChange($event)" #selectElement="ngModel" (change)="onChange($event)" (blur)="onBlur($event)" >
+        <mat-option>
+            <ngx-mat-select-search [clearSearchInput]="false" (ngModelChange)="onFilterChange($event)" ngModel [placeholderLabel]="' Search'" [noEntriesFoundLabel]="'not found Record'" [searching]="searching"></ngx-mat-select-search>
+        </mat-option>
+        <mat-option *ngFor="let item of enums | async" [value]="getValue(item)">
+            {{getLabel(item)}}
+        </mat-option>
+    </mat-select>
+    <mat-error>
+        <ng-container *ngTemplateOutlet="validationErrorsTemplate1; context:{ control: selectElement }"></ng-container>
+    </mat-error>
+</mat-form-field>
+
+
+<ng-template #validationErrorsTemplate1 let-ctrl="control">
+    <div *ngIf="ctrl.invalid">
+      <div *ngIf="ctrl.errors.required">
+        {{ "This is a required field" | translate }}
+      </div>
+
+    </div>
+</ng-template>

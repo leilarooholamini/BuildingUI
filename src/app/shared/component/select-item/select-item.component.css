@@ -1,0 +1,29 @@
+.formField {
+    display: flex;
+    border-bottom: 1px solid black;
+    width: 500px;
+}
+
+.mat-button {
+    min-width: 3px !important;
+    padding: 3px !important;
+    padding-top: 10px;
+}
+
+.placeholder {
+    font-weight: 800;
+    text-align: left;
+    padding-top: 10px;
+}
+
+.title {
+    width: 300px;
+    text-align: right;
+    padding-top: 10px;
+    padding-right: 10px;
+}
+
+.op {
+    width: 100px;
+    text-align: right;
+}

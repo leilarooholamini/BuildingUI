@@ -1,0 +1,34 @@
+<h1>لیست ساختمان ها</h1>
+<div class="content" fxLayout="row wrap"   fxLayoutGap="16px grid">
+
+  <!-- <div
+  *ngFor="let card of queryResult.Data"
+  fxFlex="25"
+  fxFlex.md="33"
+  fxFlex.sm="50"
+  fxFlex.xs="100"
+  fxLayout="column"
+  style="padding: 5px;"
+>  -->
+
+  <div [fxFlex]="(100/gridColumns) + '%'" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let card of queryResult">
+
+    <mat-card>
+      <!-- <img mat-card-image [src]="card.imgSrc" /> -->
+      <mat-card-title> {{ card.UnitName }} </mat-card-title>
+      <img mat-card-image src="../../../assets/image/b1.jpg" >
+      <mat-card-content>
+        <p>
+          {{ card.RoleTitle }}
+        </p>
+      </mat-card-content>
+      <mat-card-actions fxLayoutAlign="end">
+        <button mat-raised-button color="primary" raised (click)="onSelectUserRole(card.UserRoleId)">انتخاب</button>
+       
+      </mat-card-actions>
+    </mat-card>
+
+
+  </div>
+
+</div> 

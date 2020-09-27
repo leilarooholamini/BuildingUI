@@ -1,0 +1,29 @@
+<mat-form-field [style.width.px]="widthcontrol" style="margin-right: 10px;">
+  <!-- [placeholder]="placeholder" -->
+  <mat-label>{{ placeholder | translate }}</mat-label>
+    <textarea matInput  [rows]="rows" [minlength]="minlength" [(ngModel)]="value" #inputModel1="ngModel" [id]="id" [required]="isRequired" ngModel (change)="onChange($event)" (keyup)="onKeyup($event)" (blur)="onBlur($event)" [maxLength]="maxLength"
+        autocomplete="off"></textarea>
+
+    <mat-error>
+        <ng-container *ngTemplateOutlet="validationErrorsTemplate1; context:{ control: inputModel1 }"></ng-container>
+    </mat-error>
+</mat-form-field>
+<ng-template #validationErrorsTemplate1 let-ctrl="control">
+  <div *ngIf="ctrl.invalid ">
+    <div *ngIf="ctrl.errors.required">
+      {{ "This is a required field" | translate }}
+    </div>
+      <div *ngIf="ctrl.errors.minlength">
+       {{"errors_minlength" | translate}}  {{ctrl.errors.minlength.requiredLength}} than
+
+      </div>
+      <div *ngIf="ctrl.errors.maxlength">
+        {{"errors_maxlength" | translate}}  {{ctrl.errors.maxlength.requiredLength}}
+
+      </div>
+      <div *ngIf="ctrl.errors.pattern">
+        {{"errors_pattern"  | translate}} {{ctrl.errors.pattern.requiredPattern}}
+      </div>
+
+  </div>
+</ng-template>

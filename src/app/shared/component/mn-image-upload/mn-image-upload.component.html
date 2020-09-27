@@ -1,0 +1,15 @@
+<input type="file" #fileInput style="display: none" id="imageUpload" accept=".png, .jpg, .jpeg" (change)="fileChangeEvent($event)" />
+<mat-card class="example-card">
+    <a mat-mini-fab color="primary" *ngIf="imageState=='NewFile'" (click)="fileInput.click()">
+        <mat-icon>add_a_photo</mat-icon>
+    </a>
+    <img mat-card-image [src]="image" style="cursor: pointer;width: 100px;height: 100px; border-radius: 100%" (click)="fileInput.click()">
+    <a mat-mini-fab color="primary" *ngIf="imageState=='ReadyToUpload'" (click)="onUpload()">
+        <mat-icon>cloud_upload</mat-icon>
+    </a>
+    <a mat-mini-fab color="warn" *ngIf="imageState=='IsDeleteFile'" (click)="onDelete()">
+        <mat-icon>delete</mat-icon>
+    </a>
+</mat-card>
+<mat-progress-bar mode="determinate" *ngIf="progress!=0" [value]="progress"></mat-progress-bar> {{progress}}%
+<mat-card-header>

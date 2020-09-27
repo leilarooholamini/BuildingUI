@@ -1,0 +1,31 @@
+{  
+    "Lang": "france",  
+    "Security_Managment" : " france Security Managment" ,
+    "User_Managment" : " france User Managment" ,
+    "Role_Managment" : " france Role Managment" ,
+    "Base_Information" : " france Base Information" ,
+    "Fixed_Information" : " france Fixed Information" ,
+    "Organization" : " france Organization" ,
+    "Car_Profile" : " france Car Profile" ,
+    "Cartable_History" : " france Cartable History" ,
+    "Project" : " france Project" ,
+    "Project_Report" : " france Project Report" ,
+    "Calendar" : " france Calendar" ,
+    "Control" : " france Control" ,
+    "form_Generator" : " france form Generator" ,
+    "Flow" : " france Flow" ,
+    "Flow_Condition" : " france Flow Condition" ,
+    "flow_Condition_Unit" : " france flow Condition Unit" ,
+    "Cartable" : " france Cartable" ,
+    "Order" : " france Order" ,
+
+    "organization" :"france organization" ,
+    "Event_Type"   :"france Event Type"  , 
+    "specefic_date":"france specefic date",
+    "description"	: "france description"    ,
+    "ChangeUnitRole": " france Change Unit Role" ,
+    "This is a required field":" france This is a required field",
+    "Enter your description":"france Enter your description",
+    "Select Event Type":"france Select Event Type"
+
+}

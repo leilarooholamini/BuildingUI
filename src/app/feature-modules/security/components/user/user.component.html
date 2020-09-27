@@ -1,0 +1,70 @@
+<div class="grid-content">
+    <table class="fl-table">
+        <thead>
+            <tr>
+                <th>
+                    <button mat-mini-fab color="accent" *ngxPermissionsOnly="['UserInsert']" focusable="false" (click)="onNew()">
+           <mat-icon matSuffix>add</mat-icon>
+           </button>
+                </th>
+                <th *ngFor="let columnItem of columns" [style.width.px]="columnItem.width">
+                    <grid-filter [column]="columnItem" (onFilter)="onGridFilter($event)" (onSort)="onGridSort($event)"></grid-filter>
+                </th>
+                <th> عملیات </th>
+            </tr>
+
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of queryResult.Data; let i = index">
+                <td  >{{ itemsPerPage * (currentPage) + i + 1 }}</td>
+
+                <td  >{{ item.PersonalName }}</td>
+                <td  >{{ item.PersonalLastName }}</td>
+                <td  >{{ item.PersonalCode }}</td>
+                <td  >{{ item.Father }}</td>
+                <td  >{{ item.UserName }}</td>
+                <td  >{{ item.EmailAddress }}</td>
+                <td  >{{ item.BirthDate | date }}</td>
+        
+
+                <td  >
+                    <mat-icon *ngIf="item.IsActive" style="color: green" matSuffix>done_outline</mat-icon>
+                    <mat-icon *ngIf="!item.IsActive" style="color: red" matSuffix>check_box_outline_blank</mat-icon>
+                </td>
+
+                <td  >
+                    <mat-icon *ngIf="item.Lock" style="color: green" matSuffix>done_outline</mat-icon>
+                    <mat-icon *ngIf="!item.Lock" style="color: red" matSuffix>check_box_outline_blank</mat-icon>
+                </td>
+
+                <td  >
+                    <img width="100" height="80" *ngIf="item.ImagePath" [src]="imageUrl + item.ImagePath" />
+                </td>
+
+                <td class="opration">
+
+                    <button mat-raised-button color="Accent" *ngxPermissionsOnly="['ChengeUserPassword']" (click)="onChengeUserPassword(item.UserId)">
+                        <mat-icon matSuffix> lock_open</mat-icon>
+               </button>
+
+                    <button mat-raised-button color="Accent"  (click)="onUserRole(item.UserId)">
+                                <mat-icon matSuffix> supervised_user_circle</mat-icon>
+                       </button>
+
+                    <button mat-raised-button color="primary" *ngxPermissionsOnly="['UserUpdate']" (click)="onEdit(item.UserId)">
+                    <mat-icon matSuffix> edit</mat-icon>
+           </button>
+                    <button mat-raised-button color="warn" *ngxPermissionsOnly="['UserDelete']" (click)="onRemove(item.UserId)">
+                <mat-icon matSuffix>delete_forever</mat-icon>
+            </button>
+
+
+                </td>
+            </tr>
+            <tbody>
+    </table>
+</div>
+<div *ngIf="queryResult.Data.length==0"  > {{"No data to display" | translate }} </div>
+<mat-paginator  #paginator  [pageSize]="itemsPerPage" showFirstLastButtons
+(page)="onPageChange($event)"  [length]="queryResult.Total" [pageSizeOptions]="[5, 10, 25, 100]" >
+</mat-paginator>

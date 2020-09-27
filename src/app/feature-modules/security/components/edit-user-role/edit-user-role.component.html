@@ -1,0 +1,17 @@
+<header-dialog (close)="onCancel()" [title]="''"></header-dialog>
+
+<form #form="ngForm" (submit)="submitForm(form)" novalidate>
+    <mat-dialog-content>
+        <app-error [errorList]="errors"></app-error>
+
+        <select-item [feildTitle]="'سازمان  انتخاب نمایید'" [apiUrl]="'TreePanel/UnitAll'" [title]="entity.UnitName" (OnClick)="OnSelect($event)"> </select-item>
+
+        <mn-combo-box required [multiple]="false" [isRequired]="true" name="dddddd" [placeholder]="'انتخاب نقش'" [(ngModel)]="entity.RoleId" [apiUrl]="'RolePanel/RoleList'" [valueField]="'RoleId'" [labelField]="'RoleName'"></mn-combo-box>
+
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-raised-button color="primary" *ngxPermissionsOnly="['UserUpdate','UserInsert']" [disabled]="form.invalid" type="submit">ذخیره</button>
+        <a mat-raised-button (click)="onCancel()">انصراف</a>
+    </mat-dialog-actions>
+
+</form>

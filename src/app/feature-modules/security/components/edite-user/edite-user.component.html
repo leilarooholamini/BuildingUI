@@ -1,0 +1,55 @@
+<header-dialog (close)="onCancel()" [title]="'مدیریت کاربران'"></header-dialog>
+
+<form #form="ngForm" (submit)="submitForm(form)" novalidate>
+    <mat-dialog-content>
+        <app-error [errorList]="errors"></app-error>
+        <div>
+            <div>
+                <mninput requiredIf="true" [isRequired]="true" [widthControl]="300" name="PersonalName" [id]="'PersonalName'" [placeholder]="'نام  را وارد نمایید'" [max_Length]="50" [(ngModel)]="entity.PersonalName"></mninput>
+
+                <mninput requiredIf="true" [isRequired]="true" [widthControl]="300" name="PersonalLastName" [id]="'PersonalLastName'" [placeholder]="'نام خانوادگی  را وارد نمایید'" [max_Length]="50" [(ngModel)]="entity.PersonalLastName"></mninput>
+            </div>
+            <div>
+                <mninput requiredIf="true" [isRequired]="true" [widthControl]="300" name="PersonalCode" [id]="'PersonalCode'" [placeholder]="'شناسه پرسنلی  را وارد نمایید'" [max_Length]="50" [(ngModel)]="entity.PersonalCode"></mninput>
+
+                <mninput [widthControl]="300" name="Father" [id]="'Father'" [placeholder]="'نام پدر  را وارد نمایید'" [max_Length]="50" [(ngModel)]="entity.Father"></mninput>
+            </div>
+
+            <!-- <mn-select-filter [id]="personnelId" style="width: 300px;" required [isRequired]="true" [isRequired]="true" name="personnelId" [(value)]="entity.PersonnelId" [placeholder]="'نام کاربر  را انتخاب  نمایید'" [apiUrl]="'PersonnelPanel/PersonnelItems?'" [valueField]="'Id'"
+                [labelField]="'Name'"> </mn-select-filter> -->
+        </div>
+        <div>
+            <mninput requiredIf="true" [isRequired]="true" [widthControl]="300" name="userName" [id]="'UserName'" [placeholder]="'نام کاربری  را وارد نمایید'" [max_Length]="50" [(ngModel)]="entity.UserName"></mninput>
+        </div>
+        <div *ngIf="!isEdit">
+            <mninput requiredIf="true" [type]="'password'" [isRequired]="true" [widthControl]="300" name="'password'" [id]="'Password'" [placeholder]="'گذرواژه  را وارد نمایید'" [max_Length]="300" [(ngModel)]="entity.Password"></mninput>
+        </div>
+        <div *ngIf="!isEdit">
+            <mninput requiredIf="true" [type]="'password'" [isRequired]="true" [type]="password" [widthControl]="300" name="repassword" [id]="'RePassword'" [placeholder]="'تکرار گذرواژه  را وارد نمایید'" [max_Length]="300" [(ngModel)]="entity.RePassword"></mninput>
+        </div>
+        <div>
+            <mninput [widthControl]="300" name="emailAddress" [id]="'EmailAddress'" [placeholder]="'ایمیل  را وارد نمایید'" [max_Length]="150" [(ngModel)]="entity.EmailAddress"></mninput>
+        </div>
+        <!-- <mn-combo-box required [multiple]="true" [isRequired]="true" name="dddddd" [placeholder]="'Select Role'" [(ngModel)]="entity.RoleIds" [apiUrl]="'RolePanel/RoleList'" [valueField]="'RoleId'" [labelField]="'RoleName'"></mn-combo-box> -->
+        <!-- <mn-datepicker name="BirthDate"   [id]="'BirthDate'" [placeholder]="' تاریخ تولد  را وارد نمایید'" [(ngModel)]="dateControl1"> </mn-datepicker> -->
+        <mn-combo-box [id]="'ePostId'" required requiredIf="true" [isRequired]="true" [multiple]="true" name="ePostId" [placeholder]="'سمت را انتخاب نمایید '" [(ngModel)]="entity.PostIds" [apiUrl]="'EnumPanel/getByEnumType?EnumType=Post'" [valueField]="'EnumId'"
+            [labelField]="'EnumName'">
+        </mn-combo-box>
+
+        <!-- <mat-form-field>
+            <input matInput [matDatepicker]="picker6" name="asdasda" 
+                [(ngModel)]="dateControl1">
+            <mat-datepicker-toggle matSuffix [for]="picker6"></mat-datepicker-toggle>
+            <mat-datepicker #picker6></mat-datepicker>
+        </mat-form-field> 
+         -->
+        <br />
+        <mn-image-upload [(imageInput)]='entity.FileId'></mn-image-upload>
+
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-raised-button color="primary" *ngxPermissionsOnly="['UserUpdate','UserInsert']" [disabled]="form.invalid" type="submit">ذخیره</button>
+        <a mat-raised-button (click)="onCancel()">انصراف</a>
+    </mat-dialog-actions>
+
+</form>

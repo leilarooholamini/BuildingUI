@@ -1,0 +1,47 @@
+{  
+    "Lang": "زبان",  
+    "Security_Managment" : " کنترل و دسترسی" ,
+    "User_Managment" : " کاربران" ,
+    "Role_Managment" : " مدیریت نقش" ,
+    "Base_Information" : " اطلاعات پایه" ,
+    "Fixed_Information" : " اطلاعات ثابت" ,
+    "Fixed_Unit Type":"نوع سازمان",
+    "Organization" : "ساختار سازمان" , 
+    "organization" :"ساختار سازمان" ,
+    "description"	: "توضیحات"    ,
+    "ChangeUnitRole": " تغییر نقش" ,
+    "This is a required field":" این فیلد اجیاری می باشد",
+    
+    "file Is Empty": "مستنداتی وجود ندارد",
+    
+    "ChangeUserProfile": "تغییر پروفایل",
+     
+    "Enter Your BirthDate": "تاریخ تولد را انتخاب نمایید",
+    "Enter Your RePassword": "تکرار گذر واژه را وارد نمایید",
+    "Enter Your Password":" گذر واژه را وارد نمایید",
+    
+    "Enter Your  LastName": "نام خانوادگی را وارد نمایید",
+    "Enter Your Personal Name": "نام  را وارد نمایید",  
+  
+    "Opration": "عملیات",
+    "No data to display": "اطلاعاتی برای نمایش وجود ندارد",
+    "FileDownload": "دانلود مستندات",
+   
+    "contains": "شامل باشد",
+    "startswith": "شروع شود با",
+    "endswith": "پایان یابد با",
+    "doesnotcontain": "شامل نباشد",
+    "eq": "مساوی باشد",
+    "SearchText": "جستجو",
+    "equal": "برابر باشد",
+    "Is not equal to": "برابر نباشد",
+    "greater than or equal": "پزرگتر مساوی باشد",
+    "greater than": "پزرگتر باشد",
+    "less than or equal": "کوچکتر مساوی باشد",
+    "less than": "کوچکتر باشد",
+    "active":"فعال",
+    "Inactive":"غیر فعال",
+    "ClearFilter": "حذف فیلتر",
+    "BaseData":"اطلاعات پایه"
+  
+}

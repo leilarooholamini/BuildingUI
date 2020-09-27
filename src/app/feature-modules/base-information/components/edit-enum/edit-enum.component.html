@@ -1,0 +1,29 @@
+<header-dialog (close)="onCancel()" [title]="'اطلاعات ثابت'">
+</header-dialog>
+<form #form="ngForm" (submit)="submitForm(form)" novalidate>
+    <mat-dialog-content>
+        <app-error [errorList]="errors"></app-error>
+
+        <div>
+            <mninput requiredIf="true" [isRequired]="true" [widthControl]="300" name="enumCode" [placeholder]="'شناسه اطلاعات پایه را وارد نمایید'" [max_Length]="50" [(ngModel)]="entity.EnumCode" #enumCode="ngModel"></mninput>
+        </div>
+        <div>
+            <mninput requiredIf="true" [isRequired]="true" [widthControl]="400" name="enumName" [placeholder]="' عنوان را وارد نمایید'" [max_Length]="150" [(ngModel)]="entity.EnumName" #enumName="ngModel"></mninput>
+        </div>
+        <select-item [feildTitle]="'عنوان مافوق را انتخاب نمایید'" [apiUrl]="'EnumPanel/GetTreeByEnumTypeCode?EnumTypeCode='+entity.EnumTypeCode" [title]="entity.ParentName" (OnClick)="OnSelect($event)"> </select-item>
+
+
+    </mat-dialog-content>
+    <mat-dialog-actions>
+
+        <button mat-raised-button color="primary" [disabled]="form.invalid" type="submit">ذخیره</button>
+        <a mat-raised-button (click)="onCancel()">انصراف</a>
+    </mat-dialog-actions>
+
+
+
+
+
+
+
+</form>

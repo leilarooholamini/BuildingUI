@@ -1,0 +1,40 @@
+<div *ngIf="ExternalId" >
+<a mat-raised-button style="margin: 10px;" (click)="OnNewComment(newComment)"
+    color="primary">{{ "InsertComment" | translate}}</a>
+
+
+<comment-view *ngFor="let item of commentlst" (inputComment)="OnInsertAddToComment($event,newComment)" [item]="item">
+</comment-view>
+<!-- <div #myerr style="width: 500px;height: 200px;background-color: red;"> </div> -->
+
+<div #newComment>
+    <form #form="ngForm" (submit)="submitForm(form)" novalidate>
+        <mat-card class="example-card">
+            <mat-card-header style="width: 100%;">
+
+                <mat-card-title> {{   "UserComment" | translate}} </mat-card-title>
+
+            </mat-card-header>
+
+            <mat-card-content>
+
+                <app-error [errorList]="errors"></app-error>
+                <div>
+                    <mninput requiredIf="true" [isRequired]="true" [widthControl]="600" name="title" [id]="'Title'"
+                        [placeholder]="'EnterYourTitle'" [max_Length]="350" [(ngModel)]="entity.Title"></mninput>
+                </div>
+                <mntext-area requiredIf="true" [isRequired]="true" [widthControl]="600" name="text" [id]="'Text'"
+                    [placeholder]="'EnterYourDescription'" [max_Length]="4000" [rows]="5" [(ngModel)]="entity.Text">
+                </mntext-area>
+
+            </mat-card-content>
+            <mat-card-actions>
+                <div style="text-align: right;"><button mat-raised-button [disabled]="form.invalid" type="submit"
+                        color="primary">{{ "SaveComment" | translate}}</button></div>
+
+            </mat-card-actions>
+
+        </mat-card>
+    </form>
+</div>
+</div>

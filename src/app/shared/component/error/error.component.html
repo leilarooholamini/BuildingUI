@@ -1,0 +1,7 @@
+   <mat-error *ngIf="errorList.length > 0" >
+    <ul  >
+      <li *ngFor="let error of errorList  ">
+       {{ error }} <br/>
+      </li>
+    </ul>
+</mat-error>
